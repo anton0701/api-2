@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		184909CD17C173230026F901 /* PhotoPropertiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 184909CB17C173230026F901 /* PhotoPropertiesViewController.m */; };
+		184909CE17C173230026F901 /* PhotoPropertiesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184909CC17C173230026F901 /* PhotoPropertiesViewController.xib */; };
+		E0A4145817BBAB5B00FA2132 /* InstagramTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E0A4145717BBAB5B00FA2132 /* InstagramTableViewCell.m */; };
 		E0FDC50717B166E20029F226 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0FDC50617B166E20029F226 /* UIKit.framework */; };
 		E0FDC50917B166E20029F226 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0FDC50817B166E20029F226 /* Foundation.framework */; };
 		E0FDC50B17B166E20029F226 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0FDC50A17B166E20029F226 /* CoreGraphics.framework */; };
@@ -21,6 +24,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		184909CA17C173230026F901 /* PhotoPropertiesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoPropertiesViewController.h; sourceTree = "<group>"; };
+		184909CB17C173230026F901 /* PhotoPropertiesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoPropertiesViewController.m; sourceTree = "<group>"; };
+		184909CC17C173230026F901 /* PhotoPropertiesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoPropertiesViewController.xib; sourceTree = "<group>"; };
+		E0A4145617BBAB5B00FA2132 /* InstagramTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstagramTableViewCell.h; sourceTree = "<group>"; };
+		E0A4145717BBAB5B00FA2132 /* InstagramTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstagramTableViewCell.m; sourceTree = "<group>"; };
 		E0FDC50317B166E20029F226 /* api.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = api.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0FDC50617B166E20029F226 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E0FDC50817B166E20029F226 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -87,7 +95,12 @@
 				E0FDC51617B166E20029F226 /* AppDelegate.m */,
 				E0FDC51E17B166E30029F226 /* ViewController.h */,
 				E0FDC51F17B166E30029F226 /* ViewController.m */,
+				184909CA17C173230026F901 /* PhotoPropertiesViewController.h */,
+				184909CB17C173230026F901 /* PhotoPropertiesViewController.m */,
+				184909CC17C173230026F901 /* PhotoPropertiesViewController.xib */,
 				E0FDC52117B166E30029F226 /* ViewController.xib */,
+				E0A4145617BBAB5B00FA2132 /* InstagramTableViewCell.h */,
+				E0A4145717BBAB5B00FA2132 /* InstagramTableViewCell.m */,
 				E0FDC50D17B166E20029F226 /* Supporting Files */,
 			);
 			path = api;
@@ -163,6 +176,7 @@
 				E0FDC51B17B166E30029F226 /* Default@2x.png in Resources */,
 				E0FDC51D17B166E30029F226 /* Default-568h@2x.png in Resources */,
 				E0FDC52317B166E30029F226 /* ViewController.xib in Resources */,
+				184909CE17C173230026F901 /* PhotoPropertiesViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,6 +190,8 @@
 				E0FDC51317B166E20029F226 /* main.m in Sources */,
 				E0FDC51717B166E20029F226 /* AppDelegate.m in Sources */,
 				E0FDC52017B166E30029F226 /* ViewController.m in Sources */,
+				E0A4145817BBAB5B00FA2132 /* InstagramTableViewCell.m in Sources */,
+				184909CD17C173230026F901 /* PhotoPropertiesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,7 +242,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -250,7 +266,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -263,6 +279,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "api/api-Prefix.pch";
 				INFOPLIST_FILE = "api/api-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -274,6 +291,8 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "api/api-Prefix.pch";
 				INFOPLIST_FILE = "api/api-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -298,6 +317,7 @@
 				E0FDC52817B166E30029F226 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
