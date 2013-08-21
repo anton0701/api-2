@@ -12,8 +12,7 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *avatar;
 @property (weak, nonatomic) IBOutlet UILabel *nickName;
+@property (weak, nonatomic) IBOutlet UITextView *text;
 
-@property (weak, nonatomic) IBOutlet UILabel *likesCount;
-@property (weak, nonatomic) IBOutlet UILabel *dateAdded;
 
 @end

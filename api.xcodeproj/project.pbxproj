@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		184909CD17C173230026F901 /* PhotoPropertiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 184909CB17C173230026F901 /* PhotoPropertiesViewController.m */; };
 		184909CE17C173230026F901 /* PhotoPropertiesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184909CC17C173230026F901 /* PhotoPropertiesViewController.xib */; };
+		18EF249417C454C1001FBB33 /* PhotoPropertiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EF249317C454C1001FBB33 /* PhotoPropertiesViewController.m */; };
 		E0A4145817BBAB5B00FA2132 /* InstagramTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E0A4145717BBAB5B00FA2132 /* InstagramTableViewCell.m */; };
 		E0FDC50717B166E20029F226 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0FDC50617B166E20029F226 /* UIKit.framework */; };
 		E0FDC50917B166E20029F226 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0FDC50817B166E20029F226 /* Foundation.framework */; };
@@ -25,8 +25,8 @@
 
 /* Begin PBXFileReference section */
 		184909CA17C173230026F901 /* PhotoPropertiesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoPropertiesViewController.h; sourceTree = "<group>"; };
-		184909CB17C173230026F901 /* PhotoPropertiesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoPropertiesViewController.m; sourceTree = "<group>"; };
 		184909CC17C173230026F901 /* PhotoPropertiesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoPropertiesViewController.xib; sourceTree = "<group>"; };
+		18EF249317C454C1001FBB33 /* PhotoPropertiesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoPropertiesViewController.m; sourceTree = "<group>"; };
 		E0A4145617BBAB5B00FA2132 /* InstagramTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstagramTableViewCell.h; sourceTree = "<group>"; };
 		E0A4145717BBAB5B00FA2132 /* InstagramTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstagramTableViewCell.m; sourceTree = "<group>"; };
 		E0FDC50317B166E20029F226 /* api.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = api.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -96,7 +96,7 @@
 				E0FDC51E17B166E30029F226 /* ViewController.h */,
 				E0FDC51F17B166E30029F226 /* ViewController.m */,
 				184909CA17C173230026F901 /* PhotoPropertiesViewController.h */,
-				184909CB17C173230026F901 /* PhotoPropertiesViewController.m */,
+				18EF249317C454C1001FBB33 /* PhotoPropertiesViewController.m */,
 				184909CC17C173230026F901 /* PhotoPropertiesViewController.xib */,
 				E0FDC52117B166E30029F226 /* ViewController.xib */,
 				E0A4145617BBAB5B00FA2132 /* InstagramTableViewCell.h */,
@@ -191,7 +191,7 @@
 				E0FDC51717B166E20029F226 /* AppDelegate.m in Sources */,
 				E0FDC52017B166E30029F226 /* ViewController.m in Sources */,
 				E0A4145817BBAB5B00FA2132 /* InstagramTableViewCell.m in Sources */,
-				184909CD17C173230026F901 /* PhotoPropertiesViewController.m in Sources */,
+				18EF249417C454C1001FBB33 /* PhotoPropertiesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

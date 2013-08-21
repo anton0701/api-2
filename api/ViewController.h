@@ -13,7 +13,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "PhotoPropertiesViewController.h"
-@interface ViewController : UIViewController<UIWebViewDelegate, UITableViewDataSource, UITableViewDelegate, NSURLConnectionDelegate>
+@interface ViewController : UIViewController<UIWebViewDelegate, UITableViewDataSource, UITableViewDelegate, NSURLConnectionDelegate, UINavigationControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UIWebView *web;
 @property (nonatomic, strong) NSString* accessToken;
@@ -25,12 +25,18 @@
 @property (atomic) BOOL wasUpdatedAfterElement;
 @property (atomic) BOOL wasUpdatedBeforeElement;
 @property (strong, atomic) NSMutableArray *mediaIDArray;
+@property (strong, atomic) NSMutableArray *textIDArray;
+@property (strong, atomic) NSMutableArray *usernameIDArray;
+@property (strong, atomic) NSMutableArray *profilePictureIDArray;
+@property (strong, atomic) NSMutableArray *likesCountArray;
+
 //@property (strong, atomic) NSMutableArray *likeArray;
 @property (strong, atomic) NSMutableArray *userHasLikedArray;
 @property (strong, nonatomic) UINavigationController *navContr;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *logOutBarButton;
+@property (strong, nonatomic) UIBarButtonItem *logOutButton;
+@property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 
-@property (weak, nonatomic) IBOutlet UIToolbar *logOutToolBar;
 - (IBAction)logOut:(id)sender;
 
 @end

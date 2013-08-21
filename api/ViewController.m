@@ -18,19 +18,25 @@
 
 #define CLIENT_ID  @"428ca8b646004a5ba2c1fbe7c664b3bc"
 #define REDIRECT_URI @"https://yandex.ru"
-#define AUTHENTIFICATIONSTRING @"https://instagram.com/oauth/authorize/?client_id=%@&redirect_uri=%@&response_type=token"
+#define AUTHENTIFICATIONSTRING @"https://instagram.com/oauth/authorize/?client_id=%@&redirect_uri=%@&response_type=token&scope=likes+basic"
 #define IMAGES_PER_REQUEST 7
 #define kRefreshDeltaY -8
 
 
 @implementation ViewController
--(void)viewDidAppear
+-(void)viewWillAppear:(BOOL)animated
 {
-    _logOutToolBar.hidden = NO;
-    [self.navigationController.navigationBar setHidden:YES];
+    self.navigationController.navigationBarHidden = YES;
+//    _toolbar.hidden = NO;
+//    _navContr.navigationBar.hidden = YES;
+//    _navContr.navigationBarHidden = YES;
 }
 - (void)viewDidLoad
 {
+//    _toolbar.hidden = YES;
+    _profilePictureIDArray = [[NSMutableArray alloc]init];
+    _usernameIDArray = [[NSMutableArray alloc]init];
+    _textIDArray = [[NSMutableArray alloc]init];
     loggedOut = NO;
     hasBeenUpdated = NO;
     _photoMutableArray = [[NSMutableArray alloc]init];
@@ -42,7 +48,6 @@
     NSURLRequest* request =
     [NSURLRequest requestWithURL:[NSURL URLWithString:
                                   [NSString stringWithFormat:AUTHENTIFICATIONSTRING, CLIENT_ID, REDIRECT_URI]]];
-    
     [self.web loadRequest:request];
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
@@ -72,16 +77,17 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         _mediaIDArray = [[NSMutableArray alloc]init];
         _userHasLikedArray = [[NSMutableArray alloc]init];
 
-        _table = [[UITableView alloc]initWithFrame:CGRectMake(0, 44, self.view.frame.size.width, self.view.frame.size.height-44)];
+        _table = [[UITableView alloc]initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height, self.view.frame.size.width, self.view.frame.size.height - self.navigationController.navigationBar.frame.size.height)];
         self.web.hidden = YES;
         _table.delegate = self;
         _table.dataSource = self;
         _table.rowHeight = 350;
         [self.view addSubview:_table];
         [self getSelfFeed];
+        _toolbar.hidden = NO;
+        loggedOut = NO;
 
     }
-    
 	return YES;
 }
 
@@ -89,7 +95,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 {
     [self setTable:nil];
     [self setLogOutBarButton:nil];
-    [self setLogOutToolBar:nil];
+    [self setToolbar:nil];
     [super viewDidUnload];
 }
 
@@ -98,8 +104,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     return 1;
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     NSInteger number = 0;
     if (_photoMutableArray.count) number = _photoMutableArray.count;
     return number;
@@ -112,7 +117,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     if (itvc == nil)
     {
         itvc = [[InstagramTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-//        itvc.selectionStyle = UITableViewCellSelectionStyleNone;
+        itvc.selectionStyle = UITableViewCellSelectionStyleNone;
         
         UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         int userHasLikedInt = [_userHasLikedArray[indexPath.row]intValue];
@@ -133,7 +138,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         [itvc addSubview:propertiesButton];
         [propertiesButton setTitle:@"Properties" forState:UIControlStateNormal];
         itvc.propertiesButton = propertiesButton;
-        [itvc.propertiesButton addTarget:self action:@selector(showProperty:) forControlEvents:UIControlEventTouchUpInside];
+        [itvc.propertiesButton addTarget:self action:@selector(showProperties:) forControlEvents:UIControlEventTouchUpInside];
 
     }
 
@@ -161,10 +166,24 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                                //Картинка
                                NSData *imageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:stringUrl]];
                                UIImage *image = [UIImage imageWithData:imageData];
-                               [_photoMutableArray addObject:image];
+//                               [_photoMutableArray addObject:image];
+                               [_photoMutableArray insertObject:image atIndex:i];
                                //ID картинки
                                NSString* media_id = [dataArray[i] objectForKey:@"id"];
+                               
+                               
+                               //NEW NEW NEW NEW NEW NEW
+                               NSString* text_id = [[dataArray[i] objectForKey:@"caption"] objectForKey:@"text"];
+                               NSString* profilePicture_id = [[dataArray[i] objectForKey:@"user"]objectForKey:@"profile_picture"];
+                               NSString* username_id = [[dataArray[i] objectForKey:@"user"]objectForKey:@"username"];
+//                               [_mediaIDArray addObject:media_id];
+//                               [_textIDArray addObject:text_id];
+//                               [_usernameIDArray addObject:username_id];
+//                               [_profilePictureIDArray addObject:profilePicture_id];
                                [_mediaIDArray insertObject:media_id atIndex:i];
+                               [_textIDArray insertObject:text_id atIndex:i];
+                               [_usernameIDArray insertObject:username_id atIndex:i];
+                               [_profilePictureIDArray insertObject:profilePicture_id atIndex:i];
                                //Ставил ли лайк пользователь
                                CFBooleanRef userHasLikedBoolRef = (__bridge CFBooleanRef)([dataArray[i] objectForKey:@"user_has_liked"]);
                                if (userHasLikedBoolRef == kCFBooleanTrue)
@@ -219,6 +238,14 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                                //Получение media_id, необходимое для отправки лайков и получения свойств
                                NSString* media_id = [dataArray[i] objectForKey:@"id"];
                                [_mediaIDArray addObject:media_id];
+                               NSString* text_id = [[dataArray[i] objectForKey:@"caption"] objectForKey:@"text"];
+                               NSString* profilePicture_id = [[dataArray[i] objectForKey:@"user"]objectForKey:@"profile_picture"];
+                               NSString* username_id = [[dataArray[i] objectForKey:@"user"]objectForKey:@"username"];
+                               [_mediaIDArray addObject:media_id];
+                               [_textIDArray addObject:text_id];
+                               [_usernameIDArray addObject:username_id];
+                               [_profilePictureIDArray addObject:profilePicture_id];
+
                                //
                                CFBooleanRef userHasLikedBoolRef = (__bridge CFBooleanRef)([dataArray[i] objectForKey:@"user_has_liked"]);
                                if (userHasLikedBoolRef == kCFBooleanTrue)
@@ -266,11 +293,22 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                                NSString *stringUrl = [[NSString alloc]initWithFormat:@"%@", [[[[dataArray objectAtIndex:i]objectForKey:@"images"]objectForKey:@"standard_resolution"]objectForKey:@"url"]];
                                NSData *imageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:stringUrl]];
                                UIImage *image = [UIImage imageWithData:imageData];
-                               [_photoMutableArray insertObject:image atIndex:0];
+//                               [_photoMutableArray insertObject:image atIndex:0];
+                               [_photoMutableArray insertObject:image atIndex:i];
                                
                                //Получение media_id, необходимое для отправки лайков и получения свойств
                                NSString* media_id = [dataArray[i] objectForKey:@"id"];
+//                               [_mediaIDArray insertObject:media_id atIndex:i];
+                               
+                               NSString* text_id = [[dataArray[i] objectForKey:@"caption"] objectForKey:@"text"];
+                               NSString* profilePicture_id = [[dataArray[i] objectForKey:@"user"]objectForKey:@"profile_picture"];
+                               NSString* username_id = [[dataArray[i] objectForKey:@"user"]objectForKey:@"username"];
+                               
                                [_mediaIDArray insertObject:media_id atIndex:i];
+                               [_textIDArray insertObject:text_id atIndex:i];
+                               [_usernameIDArray insertObject:username_id atIndex:i];
+                               [_profilePictureIDArray insertObject:profilePicture_id atIndex:i];
+
                                //
                                CFBooleanRef userHasLikedBoolRef = (__bridge CFBooleanRef)([dataArray[i] objectForKey:@"user_has_liked"]);
                                if (userHasLikedBoolRef == kCFBooleanTrue)
@@ -303,7 +341,6 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         [self getSelfFeedBeforeElement:_max_id];
     
     int wasMediaLiked = [_userHasLikedArray[indexPath.row]intValue];
-    NSLog(@"%i", wasMediaLiked);
     if (wasMediaLiked == 1)
     {
         [itvc.likeButton setTitle:@"Dislike" forState:UIControlStateNormal];
@@ -352,7 +389,9 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     dispatch_async(likeQ, ^
                    {
                        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.instagram.com/v1/media/%@/likes", media_id]];
+                       NSLog(@"%@", [url description]);
                        NSString *postString = [[NSString alloc]initWithFormat:@"access_token=%@", self.accessToken];
+                       NSLog(@"%@", [postString description]);
                        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
                        [request setHTTPMethod:@"POST"];
                        [request setValue:[NSString stringWithFormat:@"%d",[postString length]] forHTTPHeaderField:@"Content-Length"];
@@ -380,16 +419,6 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
                    });
 
 }
--(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSLog(@"Selected row with number %i", indexPath.row);
-    [self.navigationController dismissModalViewControllerAnimated:YES];
-    
-    PhotoPropertiesViewController *photoPropertiesViewController = [[PhotoPropertiesViewController alloc]
-                                                    initWithNibName:@"PhotoPropertiesViewController" bundle:nil];
-    
-    [self.navigationController pushViewController:photoPropertiesViewController animated:NO];
-}
 - (IBAction)logOut:(id)sender
 {
     [_table removeFromSuperview];
@@ -409,6 +438,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     
     [self.web loadRequest:request];
     loggedOut = YES;
+    _toolbar.hidden = YES;
     
 }
 -(void)webViewDidFinishLoad:(UIWebView *)webView
@@ -425,23 +455,28 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 
     }
 }
--(void)showProperty:(id)sender
+-(void)showProperties:sender
 {
     CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:_table];
     NSIndexPath *indexPath = [_table indexPathForRowAtPoint:buttonPosition];
-    UIButton *propertyButton = sender;
     
     if (indexPath != nil)
     {
-        NSLog(@"Selected row with number %i", indexPath.row);
+        
         [self.navigationController dismissModalViewControllerAnimated:YES];
         
-        PhotoPropertiesViewController *photoPropertiesViewController = [[PhotoPropertiesViewController alloc]
+        PhotoPropertiesViewController *ppvc = [[PhotoPropertiesViewController alloc]
                                                                         initWithNibName:@"PhotoPropertiesViewController" bundle:nil];
-        
-        [self.navigationController pushViewController:photoPropertiesViewController animated:YES];
-        [self.navigationController.navigationBar setHidden:NO];
+        NSURL *imageURL = [NSURL URLWithString:_profilePictureIDArray[indexPath.row]];
+        NSData *imageData = [[NSData alloc]initWithContentsOfURL:imageURL];
+        [self.navigationController pushViewController:ppvc animated:YES];
+        ppvc.avatar.image = [UIImage imageWithData:imageData];
+        ppvc.nickName.text = _usernameIDArray[indexPath.row];
+        ppvc.text.text = _textIDArray[indexPath.row];
+        //    _toolbar.hidden = YES;
+        self.navigationController.navigationBarHidden = NO;
 
     }
+
 }
 @end

@@ -14,6 +14,7 @@
 
 @implementation PhotoPropertiesViewController
 
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -26,6 +27,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.text.editable = NO;
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -39,8 +41,7 @@
 {
     [self setAvatar:nil];
     [self setNickName:nil];
-    [self setLikesCount:nil];
-    [self setDateAdded:nil];
+    [self setText:nil];
     [super viewDidUnload];
 }
 @end
