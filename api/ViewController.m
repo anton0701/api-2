@@ -24,7 +24,11 @@
 
 
 @implementation ViewController
-
+-(void)viewDidAppear
+{
+    _logOutToolBar.hidden = NO;
+    [self.navigationController.navigationBar setHidden:YES];
+}
 - (void)viewDidLoad
 {
     loggedOut = NO;
@@ -85,6 +89,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
 {
     [self setTable:nil];
     [self setLogOutBarButton:nil];
+    [self setLogOutToolBar:nil];
     [super viewDidUnload];
 }
 
@@ -93,7 +98,8 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     return 1;
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     NSInteger number = 0;
     if (_photoMutableArray.count) number = _photoMutableArray.count;
     return number;
@@ -127,6 +133,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         [itvc addSubview:propertiesButton];
         [propertiesButton setTitle:@"Properties" forState:UIControlStateNormal];
         itvc.propertiesButton = propertiesButton;
+        [itvc.propertiesButton addTarget:self action:@selector(showProperty:) forControlEvents:UIControlEventTouchUpInside];
 
     }
 
@@ -381,7 +388,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     PhotoPropertiesViewController *photoPropertiesViewController = [[PhotoPropertiesViewController alloc]
                                                     initWithNibName:@"PhotoPropertiesViewController" bundle:nil];
     
-    [self.navigationController pushViewController:photoPropertiesViewController animated:YES];
+    [self.navigationController pushViewController:photoPropertiesViewController animated:NO];
 }
 - (IBAction)logOut:(id)sender
 {
@@ -415,6 +422,25 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         [self.web loadRequest:request2];
         [_web setHidden:NO];
         loggedOut = NO;
+
+    }
+}
+-(void)showProperty:(id)sender
+{
+    CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:_table];
+    NSIndexPath *indexPath = [_table indexPathForRowAtPoint:buttonPosition];
+    UIButton *propertyButton = sender;
+    
+    if (indexPath != nil)
+    {
+        NSLog(@"Selected row with number %i", indexPath.row);
+        [self.navigationController dismissModalViewControllerAnimated:YES];
+        
+        PhotoPropertiesViewController *photoPropertiesViewController = [[PhotoPropertiesViewController alloc]
+                                                                        initWithNibName:@"PhotoPropertiesViewController" bundle:nil];
+        
+        [self.navigationController pushViewController:photoPropertiesViewController animated:YES];
+        [self.navigationController.navigationBar setHidden:NO];
 
     }
 }

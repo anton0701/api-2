@@ -59,23 +59,23 @@
 						<float key="IBUISectionHeaderHeight">22</float>
 						<float key="IBUISectionFooterHeight">22</float>
 					</object>
-					<object class="IBUIToolbar" id="836085081">
+					<object class="IBUIToolbar" id="368103396">
 						<reference key="NSNextResponder" ref="774585933"/>
 						<int key="NSvFlags">266</int>
 						<string key="NSFrameSize">{320, 44}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="263012708"/>
+						<reference key="NSNextKeyView" ref="255782260"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<array class="NSMutableArray" key="IBUIItems">
-							<object class="IBUIBarButtonItem" id="458923273">
+							<object class="IBUIBarButtonItem" id="409825116">
 								<string key="IBUITitle">Log out</string>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIStyle">1</int>
-								<reference key="IBUIToolbar" ref="836085081"/>
+								<reference key="IBUIToolbar" ref="368103396"/>
 							</object>
 						</array>
 					</object>
@@ -85,6 +85,7 @@
 						<string key="NSFrameSize">{320, 460}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="263012708"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">1</int>
@@ -98,7 +99,7 @@
 				<string key="NSFrame">{{0, 20}, {320, 460}}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="836085081"/>
+				<reference key="NSNextKeyView" ref="368103396"/>
 				<reference key="IBUIBackgroundColor" ref="113122687"/>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
@@ -142,6 +143,14 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">logOutBarButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="409825116"/>
+					</object>
+					<int key="connectionID">145</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">web</string>
 						<reference key="source" ref="372490531"/>
 						<reference key="destination" ref="255782260"/>
@@ -150,16 +159,16 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">logOutBarButton</string>
+						<string key="label">logOutToolBar</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="458923273"/>
+						<reference key="destination" ref="368103396"/>
 					</object>
-					<int key="connectionID">145</int>
+					<int key="connectionID">147</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">logOut:</string>
-						<reference key="source" ref="458923273"/>
+						<reference key="source" ref="409825116"/>
 						<reference key="destination" ref="372490531"/>
 					</object>
 					<int key="connectionID">146</int>
@@ -189,7 +198,7 @@
 						<reference key="object" ref="774585933"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="263012708"/>
-							<reference ref="836085081"/>
+							<reference ref="368103396"/>
 							<reference ref="255782260"/>
 						</array>
 						<reference key="parent" ref="0"/>
@@ -202,16 +211,16 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">115</int>
-						<reference key="object" ref="836085081"/>
+						<reference key="object" ref="368103396"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="458923273"/>
+							<reference ref="409825116"/>
 						</array>
 						<reference key="parent" ref="774585933"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">116</int>
-						<reference key="object" ref="458923273"/>
-						<reference key="parent" ref="836085081"/>
+						<reference key="object" ref="409825116"/>
+						<reference key="parent" ref="368103396"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">69</int>
@@ -235,7 +244,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">146</int>
+			<int key="maxID">147</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -255,6 +264,7 @@
 					</object>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="logOutBarButton">UIBarButtonItem</string>
+						<string key="logOutToolBar">UIToolbar</string>
 						<string key="table">UITableView</string>
 						<string key="web">UIWebView</string>
 					</dictionary>
@@ -262,6 +272,10 @@
 						<object class="IBToOneOutletInfo" key="logOutBarButton">
 							<string key="name">logOutBarButton</string>
 							<string key="candidateClassName">UIBarButtonItem</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="logOutToolBar">
+							<string key="name">logOutToolBar</string>
+							<string key="candidateClassName">UIToolbar</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="table">
 							<string key="name">table</string>

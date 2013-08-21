@@ -30,6 +30,7 @@
 @property (strong, nonatomic) UINavigationController *navContr;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *logOutBarButton;
 
+@property (weak, nonatomic) IBOutlet UIToolbar *logOutToolBar;
 - (IBAction)logOut:(id)sender;
 
 @end
